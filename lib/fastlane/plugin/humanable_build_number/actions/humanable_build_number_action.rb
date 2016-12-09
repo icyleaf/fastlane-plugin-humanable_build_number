@@ -41,7 +41,7 @@ module Fastlane
       end
 
       def self.description
-        "Automatic set app build number unque and human readable friendly"
+        "Automatic generate app build number unque and human readable friendly, like yymmHHMM. both support iOS and Android."
       end
 
       def self.authors
@@ -55,11 +55,11 @@ module Fastlane
       end
 
       def self.return_value
-        'The humanable build number, like `yymmHHMM`'
+        'The humanable build number'
       end
 
       def self.details
-        "The default will using the datetime of git last commit, but else the datetime of build and formatted to yymmHHMM."
+        "The default will using the datetime of git last commit, but else the datetime of build and formatted to yymmHHMM. "
       end
 
       def self.available_options
