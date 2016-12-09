@@ -1,3 +1,5 @@
+require 'date'
+
 module Fastlane
   module Helper
     class HumanableBuildNumberHelper

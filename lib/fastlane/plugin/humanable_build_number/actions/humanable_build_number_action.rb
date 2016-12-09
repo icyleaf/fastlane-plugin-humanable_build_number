@@ -32,8 +32,8 @@ module Fastlane
       end
 
       def self.generate_git_commit_number!
-        git_last_commit_date = Actions.last_git_commit_formatted_with('%ci')
-        @build_number = Helper::HumanableBuildNumberHelper.cook_humanable(git_last_commit_date)
+        git_last_commit_datetime = Actions.last_git_commit_formatted_with('%ci')
+        @build_number = Helper::HumanableBuildNumberHelper.cook_humanable(git_last_commit_datetime)
       end
 
       def self.generate_build_number!
