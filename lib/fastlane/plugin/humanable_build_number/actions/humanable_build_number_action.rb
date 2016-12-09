@@ -67,7 +67,7 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :update,
                                        env_name: 'HUMANABLE_UPDATE',
                                        description: 'Set the build number to xcode configuration file',
-                                       default_value: true,
+                                       default_value: false,
                                        is_string: false)
         ]
       end

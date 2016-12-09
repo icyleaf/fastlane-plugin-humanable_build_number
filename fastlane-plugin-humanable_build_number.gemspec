@@ -10,14 +10,12 @@ Gem::Specification.new do |spec|
   spec.email         = %q{icyleaf.cn@gmail.com}
 
   spec.summary       = %q{Automatic set app build number unque and human readable friendly}
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-humanable_build_number"
+  spec.homepage      = "https://github.com/icyleaf/fastlane-plugin-humanable_build_number"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
-
-  # spec.add_dependency 'your-dependency', '~> 1.0.0'
 
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'bundler'
