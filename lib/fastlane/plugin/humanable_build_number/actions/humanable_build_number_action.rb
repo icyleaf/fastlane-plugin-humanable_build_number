@@ -28,7 +28,7 @@ module Fastlane
         end
 
         UI.message 'set build number to xcode project'
-        Actions.increment_build_number(build_number: @build_number)
+        Fastlane::Actions::IncrementBuildNumberAction(build_number: @build_number)
       end
 
       def self.generate_git_commit_number!
