@@ -12,7 +12,7 @@ fastlane add_plugin humanable_build_number
 
 ## About humanable_build_number
 
-Automatic generate app build number unque and human readable friendly, like yymmHHMM. both support iOS and Android.
+Automatic generate app build number unque and human readable friendly, like `mmddHHMM`. both support iOS and Android.
 
 ### Automatic get and set build number
 
