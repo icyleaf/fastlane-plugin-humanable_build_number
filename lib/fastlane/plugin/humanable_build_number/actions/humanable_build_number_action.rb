@@ -7,11 +7,11 @@ module Fastlane
     class HumanableBuildNumberAction < Action
       def self.run(params)
         if GetBuildNumberRepositoryAction.is_git?
-          generate_git_commit_number!
+          generate_git_commit_number!(params[:date_format])
           UI.message 'humanable detect: git'
         else
           UI.message 'humanable detect: current datetime'
-          generate_build_number!
+          generate_build_number!(params[:date_format])
         end
 
         UI.message "humanable build number: #{@build_number.green}"
@@ -33,13 +33,13 @@ module Fastlane
         Fastlane::Actions::IncrementBuildNumberAction.run(build_number: @build_number)
       end
 
-      def self.generate_git_commit_number!
+      def self.generate_git_commit_number!(format)
         git_last_commit_datetime = Actions.last_git_commit_formatted_with('%ci')
-        @build_number = Helper::HumanableBuildNumberHelper.cook_humanable(git_last_commit_datetime)
+        @build_number = Helper::HumanableBuildNumberHelper.cook_humanable(git_last_commit_datetime, format: format)
       end
 
-      def self.generate_build_number!
-        @build_number = Helper::HumanableBuildNumberHelper.cook_humanable
+      def self.generate_build_number!(format)
+        @build_number = Helper::HumanableBuildNumberHelper.cook_humanable(format: format)
       end
 
       def self.description
@@ -52,7 +52,7 @@ module Fastlane
 
       def self.output
         [
-          [SharedValues::HUMANABLE_BUILD_NUMBER.to_s, 'The humanable build number, like `yymmHHMM`']
+          [SharedValues::HUMANABLE_BUILD_NUMBER.to_s, 'The humanable build number, like `yymmddHHMM`']
         ]
       end
 
@@ -70,7 +70,12 @@ module Fastlane
                                        env_name: 'HUMANABLE_UPDATE',
                                        description: 'Set the build number to xcode configuration file',
                                        default_value: false,
-                                       is_string: false)
+                                       is_string: false),
+          FastlaneCore::ConfigItem.new(key: :date_format,
+                                       env_name: 'HUMANABLE_DATE_FORMAT',
+                                       description: 'Set formatter of build_number',
+                                       default_value: '%m%d%H%M',
+                                       is_string: true)
         ]
       end
 

@@ -3,11 +3,10 @@ require 'date'
 module Fastlane
   module Helper
     class HumanableBuildNumberHelper
-      def self.cook_humanable(date = nil)
+      def self.cook_humanable(date = nil, format:)
         date ||= Time.now
         date = DateTime.parse(date) if date.kind_of?String
-
-        build_number = date.strftime('%m%d%H%M')
+        build_number = date.strftime(format)
 
         Actions.lane_context[Actions::SharedValues::HUMANABLE_BUILD_NUMBER] = build_number
         ENV[Actions::SharedValues::HUMANABLE_BUILD_NUMBER.to_s] = build_number
@@ -37,7 +36,7 @@ module Fastlane
           '    task: "assemble", ',
           '    build_type: "debug", ',
           '    properties: { ',
-          '      "versionCode" => humanable_build_number',
+          '      "versionCode" => humanable_build_number.to_i',
           '    }',
           '  )',
           'end',
